@@ -49,8 +49,8 @@ class BaseModel(Base):
         return instance.save(db, commit=commit)
 
     @classmethod
-    def get(cls, db: Session, id: int):
-        return db.query(cls).filter(cls.id == id).first()
+    def get(cls, db: Session, **kwargs):
+        return db.query(cls).filter_by(**kwargs).first()
 
     @classmethod
     def get_all(cls, db: Session):

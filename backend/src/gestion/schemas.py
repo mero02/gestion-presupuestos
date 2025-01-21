@@ -7,16 +7,17 @@ from src.gestion import exceptions
 # Schemas para Usuario
 class UsuarioBase(BaseModel):
     nombre: str
-    email: str
+    email: EmailStr
 
 class UsuarioCreate(UsuarioBase):
-    pass
-
-class UsuarioUpdate(UsuarioBase):
-    pass
+    password: str  
 
 class Usuario(UsuarioBase):
     id: int
     fecha_creacion: datetime
 
     model_config = {"from_attributes": True}
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
