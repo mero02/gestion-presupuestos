@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate  } from 'react-router-dom';
 import { Box, Button, HStack, useToast } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
 
 const Navigation = () => {
   const { user, logout } = useAuth();
   const toast = useToast();
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
     logout();
@@ -14,6 +15,7 @@ const Navigation = () => {
       status: 'success',
       duration: 2000,
     });
+    navigate('/login');
   };
 
   return (

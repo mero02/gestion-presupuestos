@@ -1,11 +1,8 @@
-from datetime import datetime, timedelta
-from jose import jwt
-from typing import Optional
-from dotenv import load_dotenv
 import os
-
-# Cargo las variables del env
-load_dotenv()
+from datetime import datetime, timedelta
+from typing import Optional
+import jwt
+from jwt import PyJWTError
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
@@ -20,6 +17,11 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 def decode_access_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        print("Payload decodificado:", payload)  # Depuración
         return payload
-    except jwt.JWTError:
+    except jwt.ExpiredSignatureError:
+        print("El token ha expirado.")
+        return None
+    except PyJWTError as e:
+        print("Token inválido:", e)
         return None
