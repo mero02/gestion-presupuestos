@@ -14,25 +14,30 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
 import { AiOutlineDashboard, AiFillSignal } from "react-icons/ai";
+import { GrDocumentConfig  } from "react-icons/gr";
+import { TbReportMoney } from "react-icons/tb";
 import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
-  const {user} = useAuth();
+  const {userName} = useAuth();
+
   // Definición de las tarjetas con rutas e íconos
   const cards = [
     { id: 'income', title: 'Ingresos', route: '/ingresospage', icon: FiTrendingUp, color: 'green.500' },
     { id: 'expenses', title: 'Gastos', route: '/gastospage', icon: FiTrendingDown, color: 'red.500' },
     { id: 'summary', title: 'Resumen', route: '/resumenpage', icon: AiOutlineDashboard, color: 'blue.500' },
     { id: 'budget', title: 'Presupuesto', route: '/presupuestopage', icon: AiFillSignal, color: 'purple.500' },
+    { id: 'category', title: 'Categorías', route: '/categoriapage', icon: GrDocumentConfig, color: 'purple.500' },
+    { id: 'money', title: 'Monedas', route: '/monedapage', icon: TbReportMoney, color: 'purple.500' },
   ];
 
   return (
     <Box maxW="container.md" mx="auto" p={4}>
       <VStack spacing={6} align="stretch">
-        <Heading textAlign="center" size="xl" color="gray.700">Mi Perfil</Heading>
-        <Box bg="gray.100" p={6} borderRadius="lg" boxShadow="sm">
-          <Text fontSize="lg" fontWeight="bold" color="gray.600">
-            Bienvenido,  {user.email}
+        <Heading textAlign="center" size="xl" color="gray.500">Mi Perfil</Heading>
+        <Box bg="gray.600" p={6} borderRadius="lg" boxShadow="sm">
+          <Text fontSize="lg" fontWeight="bold" color="gray.400">
+            Bienvenido,  {userName}
           </Text>
         </Box>
         <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={4}>

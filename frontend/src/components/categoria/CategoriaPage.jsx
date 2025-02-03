@@ -11,22 +11,17 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
-  Button,
   VStack,
   HStack,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { FaPlus } from 'react-icons/fa';
-import FormularioIngreso from './FormularioIngreso';
-import ListaIngresos from './ListaIngresos';
-import { useAuth } from '../../context/AuthContext';
+import FormularioCategoria from './FormularioCategoria';
+import ListaCategoria from './ListaCategoria';
 
-const IngresosPage = () => {
+const CategoriaPage = () => {
   const [actualizarLista, setActualizarLista] = useState(false);
-  const { userId } = useAuth();
-  const idUsuario = userId;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Color modes for better theme support
@@ -34,9 +29,9 @@ const IngresosPage = () => {
   const headerBg = useColorModeValue('white', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.600');
 
-  const handleIngresoRegistrado = () => {
-    setActualizarLista((prev) => !prev);
-    onClose();
+  const handleCategoriaRegistrada = () => {
+    setActualizarLista((prev) => !prev); // Actualiza la lista de categorías
+    onClose(); // Cierra el modal
   };
 
   return (
@@ -54,17 +49,17 @@ const IngresosPage = () => {
           >
             <HStack justify="space-between" align="center">
               <VStack align="start" spacing={1}>
-                <Heading size="lg">Gestión de Ingresos</Heading>
+                <Heading size="lg">Gestión de Categorías</Heading>
                 <Text color="gray.500" fontSize="sm">
-                  Administra tus ingresos de manera eficiente
+                  Administra tus categorías de gastos
                 </Text>
               </VStack>
               <IconButton
                 icon={<FaPlus />}
-                title='Agregar Ingreso'
+                title="Agregar Categoría"
                 colorScheme="blue"
                 size="lg"
-                aria-label="Agregar Ingreso"
+                aria-label="Agregar Categoría"
                 onClick={onOpen}
                 borderRadius="full"
                 _hover={{
@@ -75,7 +70,7 @@ const IngresosPage = () => {
             </HStack>
           </Box>
 
-          {/* Modal */}
+          {/* Modal para agregar categoría */}
           <Modal 
             isOpen={isOpen} 
             onClose={onClose}
@@ -89,35 +84,18 @@ const IngresosPage = () => {
                 borderColor={borderColor}
                 py={4}
               >
-                Registrar Nuevo Ingreso
+                Registrar Nueva Categoría
               </ModalHeader>
               <ModalCloseButton />
               <ModalBody py={6}>
-                <FormularioIngreso 
-                  idUsuario={idUsuario} 
-                  onIngresoRegistrado={handleIngresoRegistrado} 
+                <FormularioCategoria 
+                  onCategoriaRegistrada={handleCategoriaRegistrada} 
                 />
               </ModalBody>
-              <ModalFooter 
-                borderTopWidth="1px" 
-                borderColor={borderColor}
-              >
-                <Button 
-                  onClick={onClose} 
-                  colorScheme="red" 
-                  variant="outline"
-                  mr={3}
-                  _hover={{
-                    bg: 'red.50'
-                  }}
-                >
-                  Cancelar
-                </Button>
-              </ModalFooter>
             </ModalContent>
           </Modal>
 
-          {/* Lista de ingresos */}
+          {/* Lista de categorías */}
           <Box
             bg={headerBg}
             borderRadius="lg"
@@ -126,7 +104,7 @@ const IngresosPage = () => {
             borderColor={borderColor}
             overflow="hidden"
           >
-            <ListaIngresos idUsuario={idUsuario} key={actualizarLista} />
+            <ListaCategoria key={actualizarLista} />
           </Box>
         </VStack>
       </Container>
@@ -134,4 +112,4 @@ const IngresosPage = () => {
   );
 };
 
-export default IngresosPage;
+export default CategoriaPage;

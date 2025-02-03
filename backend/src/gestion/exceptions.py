@@ -38,3 +38,8 @@ class GastoYaRegistrado(BadRequest):
 class IngresoNoPerteneceAUsuario(PermissionDenied):
     DETAIL = ErrorCode.INGRESO_NO_PERTENECE_A_USUARIO
     
+class ResumenNoEncontrado(NotFound):
+    DETAIL = ErrorCode.RESUMEN_NO_ENCONTRADO
+    
+class CategoriaNoEncontrada(NotFound):
+    DETAIL = ErrorCode.CATEGORIA_NO_ENCONTRADA

@@ -11,4 +11,5 @@ class ErrorCode:
     INGRESO_YA_REGISTRADO = "El ingreso ya se encuentra registrado."
     GASTO_YA_REGISTRADO = "El gasto ya se encuentra registrado."
     INGRESO_NO_PERTENECE_A_USUARIO = "El ingreso no pertenece al usuario."
-    
+    RESUMEN_NO_ENCONTRADO = "El resumen no fue encontrado."
+    CATEGORIA_NO_ENCONTRADA = "La categoría no fue encontrada."

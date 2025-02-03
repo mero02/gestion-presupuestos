@@ -19,12 +19,11 @@ const Login = () => {
     try {
       const response = await login(credentials.email, credentials.password);
       if (response.data.access_token) {
-        const tokenKey = `token_${credentials.email}`;
         localStorage.setItem('token', response.data.access_token); // Almacenar el token con una clave genérica
   
         const decodedToken = jwt_decode(response.data.access_token);
         const userId = decodedToken.user_id || decodedToken.sub;
-  
+        const userName = decodedToken.user_name || decodedToken.name;
         toast({
           title: 'Inicio de sesión exitoso',
           status: 'success',
@@ -32,7 +31,7 @@ const Login = () => {
           isClosable: true,
         });
   
-        authLogin({ email: credentials.email }, response.data.access_token, userId);
+        authLogin({ email: credentials.email }, response.data.access_token, userId, userName);
         navigate(`/profile`);
       }
     } catch (error) {

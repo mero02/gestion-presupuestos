@@ -5,7 +5,9 @@ import Login from '../src/components/Login';
 import Profile from '../src/components/Profile';
 import IngresosPage from '../src/components/ingreso/IngresosPage';
 import GastosPage from '../src/components/gastos/GastosPage';
-//import ResumenPage from '../src/components/resumen/ResumenPage';
+import ResumenPage from '../src/components/resumen/ResumenPage';
+import CategoriaPage from '../src/components/categoria/CategoriaPage';
+import MonedasPage from './components/monedas/MonedasPage';
 //import PresupuestoPage from '../src/components/presupuesto/PresupuestoPage';
 
 const AppRoutes = () => {
@@ -40,7 +42,7 @@ const AppRoutes = () => {
           </PrivateRoute>
         } 
       />
-      {/*<Route 
+      <Route 
         path="/resumenpage" 
         element={
           <PrivateRoute>
@@ -48,7 +50,23 @@ const AppRoutes = () => {
           </PrivateRoute>
         } 
       />
-      <Route 
+      <Route
+        path="/categoriapage"
+        element={
+          <PrivateRoute>
+            <CategoriaPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/monedapage"
+        element={
+          <PrivateRoute>
+            <MonedasPage />
+          </PrivateRoute>
+        }
+      />
+      {/*<Route 
         path="/presupuestopage" 
         element={
           <PrivateRoute>
