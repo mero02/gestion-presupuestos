@@ -282,9 +282,9 @@ def eliminar_moneda(db: Session, id_moneda: int):
     return db_moneda
 
 # CRUD para Presupuestos
-def crear_presupuesto(db: Session, presupuesto: schemas.PresupuestoCreate, id_usuario: int):
+def crear_presupuesto(db: Session, presupuesto: schemas.PresupuestoCreate):
     db_presupuesto = Presupuesto(
-        id_usuario=id_usuario,
+        id_usuario=presupuesto.id_usuario,
         id_categoria=presupuesto.id_categoria,
         id_moneda=presupuesto.id_moneda,
         monto_objetivo=presupuesto.monto_objetivo,
@@ -301,8 +301,8 @@ def crear_presupuesto(db: Session, presupuesto: schemas.PresupuestoCreate, id_us
 def obtener_presupuesto(db: Session, id_presupuesto: int):
     return db.query(Presupuesto).filter(Presupuesto.id_presupuesto == id_presupuesto).first()
 
-def obtener_presupuestos_usuario(db: Session, id_usuario: int):
-    return db.query(Presupuesto).filter(Presupuesto.id_usuario == id_usuario).all()
+def obtener_presupuestos_usuario(db: Session, id_usuario: int, skip: int = 0, limit: int = 10):
+    return db.query(Presupuesto).filter(Presupuesto.id_usuario == id_usuario).offset(skip).limit(limit).all()
 
 def actualizar_monto_actual(db: Session, id_presupuesto: int):
     presupuesto = db.query(Presupuesto).filter(Presupuesto.id_presupuesto == id_presupuesto).first()
@@ -323,8 +323,8 @@ def actualizar_monto_actual(db: Session, id_presupuesto: int):
 
 def eliminar_presupuesto(db: Session, id_presupuesto: int):
     db_presupuesto = db.query(Presupuesto).filter(Presupuesto.id_presupuesto == id_presupuesto).first()
-    if db_presupuesto:
-        db.delete(db_presupuesto)
-        db.commit()
-        return True
-    return False
+    if not db_presupuesto:
+        return None
+    db.delete(db_presupuesto)
+    db.commit()
+    return db_presupuesto

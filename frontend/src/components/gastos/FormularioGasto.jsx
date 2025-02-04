@@ -165,16 +165,22 @@ const FormularioGasto = ({ idUsuario, onGastoRegistrado, gastoEditando }) => {
 
       <Button 
         type="submit" 
-        colorScheme="red" 
         width="full"
         isLoading={isSubmitting}
         loadingText={gastoEditando ? "Actualizando..." : "Registrando..."}
         isDisabled={!isValidMonto || !isValidCategoria}
-        _hover={{
-          transform: 'translateY(-2px)',
-          boxShadow: 'lg',
-        }}
-        transition="all 0.2s"
+        bg={"orange.400"}
+          boxShadow="xl"
+          _hover={{
+            bg: "orange.500",
+            transform: 'scale(1.05)',
+            transition: 'all 0.2s ease-in-out',
+            boxShadow: '2xl'
+          }}
+          _active={{
+            bg: "orange.600",
+            transform: 'scale(0.95)'
+          }}
       >
         {gastoEditando ? 'Actualizar Gasto' : 'Registrar Gasto'}
       </Button>

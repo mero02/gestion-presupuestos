@@ -19,6 +19,7 @@ import {
 import { FaPlus } from 'react-icons/fa';
 import FormularioMoneda from './FormularioMoneda';
 import ListaMonedas from './ListaMonedas';
+import GoBackButton from '../GoBackButton';
 
 const MonedasPage = () => {
   const [actualizarLista, setActualizarLista] = useState(false);
@@ -48,6 +49,7 @@ const MonedasPage = () => {
             borderColor={borderColor}
           >
             <HStack justify="space-between" align="center">
+              <GoBackButton />
               <VStack align="start" spacing={1}>
                 <Heading size="lg">Gestión de Monedas</Heading>
                 <Text color="gray.500" fontSize="sm">
@@ -56,15 +58,23 @@ const MonedasPage = () => {
               </VStack>
               <IconButton
                 icon={<FaPlus />}
-                title="Agregar Moneda"
-                colorScheme="blue"
+                title='Agregar Moneda'
+                bg="orange.400"
+                color="gray.900"
                 size="lg"
                 aria-label="Agregar Moneda"
                 onClick={onOpen}
                 borderRadius="full"
+                boxShadow="xl"
                 _hover={{
+                  bg: "orange.500",
                   transform: 'scale(1.05)',
-                  transition: 'all 0.2s ease-in-out'
+                  transition: 'all 0.2s ease-in-out',
+                  boxShadow: '2xl'
+                }}
+                _active={{
+                  bg: "orange.600",
+                  transform: 'scale(0.95)'
                 }}
               />
             </HStack>

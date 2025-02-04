@@ -26,7 +26,7 @@ const Profile = () => {
     { id: 'income', title: 'Ingresos', route: '/ingresospage', icon: FiTrendingUp, color: 'green.500' },
     { id: 'expenses', title: 'Gastos', route: '/gastospage', icon: FiTrendingDown, color: 'red.500' },
     { id: 'summary', title: 'Resumen', route: '/resumenpage', icon: AiOutlineDashboard, color: 'blue.500' },
-    { id: 'budget', title: 'Presupuesto', route: '/presupuestopage', icon: AiFillSignal, color: 'purple.500' },
+    { id: 'budget', title: 'Presupuesto', route: '/presupuestospage', icon: AiFillSignal, color: 'purple.500' },
     { id: 'category', title: 'Categorías', route: '/categoriapage', icon: GrDocumentConfig, color: 'purple.500' },
     { id: 'money', title: 'Monedas', route: '/monedapage', icon: TbReportMoney, color: 'purple.500' },
   ];
@@ -34,7 +34,6 @@ const Profile = () => {
   return (
     <Box maxW="container.md" mx="auto" p={4}>
       <VStack spacing={6} align="stretch">
-        <Heading textAlign="center" size="xl" color="gray.500">Mi Perfil</Heading>
         <Box bg="gray.600" p={6} borderRadius="lg" boxShadow="sm">
           <Text fontSize="lg" fontWeight="bold" color="gray.400">
             Bienvenido,  {userName}

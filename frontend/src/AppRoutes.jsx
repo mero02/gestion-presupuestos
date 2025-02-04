@@ -8,7 +8,7 @@ import GastosPage from '../src/components/gastos/GastosPage';
 import ResumenPage from '../src/components/resumen/ResumenPage';
 import CategoriaPage from '../src/components/categoria/CategoriaPage';
 import MonedasPage from './components/monedas/MonedasPage';
-//import PresupuestoPage from '../src/components/presupuesto/PresupuestoPage';
+import PresupuestosPage from '../src/components/presupuesto/PresupuestosPage';
 
 const AppRoutes = () => {
   return (
@@ -66,14 +66,14 @@ const AppRoutes = () => {
           </PrivateRoute>
         }
       />
-      {/*<Route 
-        path="/presupuestopage" 
+      <Route 
+        path="/presupuestospage" 
         element={
           <PrivateRoute>
-            <PresupuestoPage />
+            <PresupuestosPage />
           </PrivateRoute>
         } 
-      />*/}
+      />
 
       {/* Redirección por defecto */}
       <Route path="/" element={<Navigate to="/login" replace />} />

@@ -187,10 +187,10 @@ const ListaGastos = ({ idUsuario }) => {
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th borderColor={borderColor}>Categoria</Th>
-                <Th borderColor={borderColor}>Monto</Th>
-                <Th borderColor={borderColor}>Fecha</Th>
-                <Th borderColor={borderColor}>Acciones</Th>
+                <Th textAlign={'center'} fontWeight="bold" borderColor={borderColor} color={'white'}>Categoria</Th>
+                <Th textAlign={'center'} fontWeight="bold" borderColor={borderColor} color={'white'}>Monto</Th>
+                <Th textAlign={'center'} fontWeight="bold" borderColor={borderColor} color={'white'}>Fecha</Th>
+                <Th textAlign={'center'} fontWeight="bold" borderColor={borderColor} color={'white'}>Acciones</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -200,34 +200,53 @@ const ListaGastos = ({ idUsuario }) => {
                   _hover={{ bg: hoverBg }}
                   transition="background 0.2s"
                 >
-                  <Td borderColor={borderColor}>{gasto.categoria}</Td>
-                  <Td borderColor={borderColor}>
+                  <Td textAlign={'center'} borderColor={borderColor}>{gasto.categoria}</Td>
+                  <Td textAlign={'center'} borderColor={borderColor}>
                     <Badge colorScheme="green" fontSize="md" px={2}>
                       ${gasto.monto.toFixed(2)}
                     </Badge>
                   </Td>
-                  <Td borderColor={borderColor}>{new Date(gasto.fecha).toLocaleString()}</Td>
-                  <Td borderColor={borderColor}>
-                    <HStack spacing={2}>
-                      <IconButton
-                        icon={<FaEdit />}
-                        colorScheme="blue"
-                        aria-label="Editar"
-                        onClick={() => handleEditar(gasto)}
-                        size="sm"
-                        _hover={{ transform: 'scale(1.1)' }}
-                        transition="transform 0.2s"
-                      />
-                      <IconButton
-                        icon={<FaTrash />}
-                        colorScheme="red"
-                        aria-label="Eliminar"
-                        onClick={() => handleEliminarClick(gasto)}
-                        size="sm"
-                        _hover={{ transform: 'scale(1.1)' }}
-                        transition="transform 0.2s"
-                      />
-                    </HStack>
+                  <Td textAlign={'center'} borderColor={borderColor}>{new Date(gasto.fecha).toLocaleString()}</Td>
+                  <Td textAlign={'center'} borderColor={borderColor}>
+                    <IconButton
+                      icon={<FaEdit />}
+                      aria-label="Editar"
+                      onClick={() => handleEditar(gasto)}
+                      bg="green.400"
+                      color="gray.900"
+                      size="sm"
+                      boxShadow="xl"
+                      _hover={{
+                        bg: "green.500",
+                        transform: 'scale(1.05)',
+                        transition: 'all 0.2s ease-in-out',
+                        boxShadow: '2xl'
+                      }}
+                      _active={{
+                        bg: "green.600",
+                        transform: 'scale(0.95)'
+                      }}
+                      mr={2}
+                    />
+                    <IconButton
+                      icon={<FaTrash />}
+                      aria-label="Eliminar"
+                      onClick={() => handleEliminarClick(gasto)}
+                      bg="red.400"
+                      color="gray.900"
+                      size="sm"
+                      boxShadow="xl"
+                      _hover={{
+                        bg: "red.500",
+                        transform: 'scale(1.05)',
+                        transition: 'all 0.2s ease-in-out',
+                        boxShadow: '2xl'
+                      }}
+                      _active={{
+                        bg: "red.600",
+                        transform: 'scale(0.95)'
+                      }}
+                    />
                   </Td>
                 </Tr>
               ))}
@@ -290,18 +309,47 @@ const ListaGastos = ({ idUsuario }) => {
               ¿Estás seguro que deseas eliminar este gasto? Esta acción no se puede deshacer.
               {gastoAEliminar && (
                 <Box mt={4}>
-                  <Text><strong>Fuente:</strong> {gastoAEliminar.fuente}</Text>
+                  <Text><strong>Categoria:</strong> {gastoAEliminar.categoria}</Text>
                   <Text><strong>Monto:</strong> ${gastoAEliminar.monto.toFixed(2)}</Text>
                 </Box>
               )}
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onDeleteAlertClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme="red" onClick={handleEliminarConfirm} ml={3}>
+              <Button 
+                onClick={handleEliminarConfirm} 
+                mr={3}
+                bg="red.500"
+                boxShadow="xl"
+                _hover={{
+                  bg: "red.500",
+                  transform: 'scale(1.05)',
+                  transition: 'all 0.2s ease-in-out',
+                  boxShadow: '2xl'
+                }}
+                _active={{
+                  bg: "red.600",
+                  transform: 'scale(0.95)'
+                }}
+              >
                 Eliminar
+              </Button>
+              <Button 
+                bg="green.500"
+                boxShadow="xl"
+                _hover={{
+                  bg: "green.500",
+                  transform: 'scale(1.05)',
+                  transition: 'all 0.2s ease-in-out',
+                  boxShadow: '2xl'
+                }}
+                _active={{
+                  bg: "green.600",
+                  transform: 'scale(0.95)'
+                }}
+                ref={cancelRef} onClick={onDeleteAlertClose}
+              >
+                Cancelar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

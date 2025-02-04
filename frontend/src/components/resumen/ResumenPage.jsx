@@ -7,6 +7,7 @@ import BarChartComponent from './BarChartComponent';
 import PieChartComponent from './PieChartComponent';
 import PieChartGastos from './PieChartGastos';
 import PieChartIngresos from './PieChartIngresos';
+import GoBackButton from '../GoBackButton';
 
 // Constantes
 const MESES = Array.from({ length: 12 }, (_, i) => ({
@@ -274,8 +275,9 @@ const ResumenPage = () => {
   return (
     <Box bg={bgPage} minH="100vh" py={8}>
       <Container maxW="container.xl">
-        <VStack spacing={4} align="stretch">
+        <VStack spacing={4} align="stretch"> 
           <Flex justifyContent="space-between" alignItems="center">
+            <GoBackButton />
             <Heading size="lg">Resumen Financiero</Heading>
             <SelectorFecha
               mes={mes}

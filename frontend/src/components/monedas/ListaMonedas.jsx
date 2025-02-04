@@ -144,8 +144,8 @@ const ListaMoneda = () => {
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th borderColor={borderColor}>Nombre</Th>
-                <Th borderColor={borderColor}>Acciones</Th>
+                <Th textAlign={'center'} fontWeight="bold" borderColor={borderColor} color={'white'}>Nombre</Th>
+                <Th textAlign={'center'} fontWeight="bold" borderColor={borderColor} color={'white'}>Acciones</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -155,28 +155,47 @@ const ListaMoneda = () => {
                   _hover={{ bg: hoverBg }}
                   transition="background 0.2s"
                 >
-                  <Td borderColor={borderColor}>{moneda.nombre}</Td>
-                  <Td borderColor={borderColor}>
-                    <HStack spacing={2}>
-                      <IconButton
-                        icon={<FaEdit />}
-                        colorScheme="blue"
-                        aria-label="Editar"
-                        onClick={() => handleEditar(moneda)}
-                        size="sm"
-                        _hover={{ transform: 'scale(1.1)' }}
-                        transition="transform 0.2s"
-                      />
-                      <IconButton
-                        icon={<FaTrash />}
-                        colorScheme="red"
-                        aria-label="Eliminar"
-                        onClick={() => handleEliminarClick(moneda)}
-                        size="sm"
-                        _hover={{ transform: 'scale(1.1)' }}
-                        transition="transform 0.2s"
-                      />
-                    </HStack>
+                  <Td textAlign={'center'} borderColor={borderColor}>{moneda.nombre}</Td>
+                  <Td textAlign={'center'} borderColor={borderColor}>
+                    <IconButton
+                      icon={<FaEdit />}
+                      aria-label="Editar"
+                      onClick={() => handleEditar(moneda)}
+                      bg="green.400"
+                      color="gray.900"
+                      size="sm"
+                      boxShadow="xl"
+                      _hover={{
+                        bg: "green.500",
+                        transform: 'scale(1.05)',
+                        transition: 'all 0.2s ease-in-out',
+                        boxShadow: '2xl'
+                      }}
+                      _active={{
+                        bg: "green.600",
+                        transform: 'scale(0.95)'
+                      }}
+                      mr={2}
+                    />
+                    <IconButton
+                      icon={<FaTrash />}
+                      aria-label="Eliminar"
+                      onClick={() => handleEliminarClick(moneda)}
+                      bg="red.400"
+                      color="gray.900"
+                      size="sm"
+                      boxShadow="xl"
+                      _hover={{
+                        bg: "red.500",
+                        transform: 'scale(1.05)',
+                        transition: 'all 0.2s ease-in-out',
+                        boxShadow: '2xl'
+                      }}
+                      _active={{
+                        bg: "red.600",
+                        transform: 'scale(0.95)'
+                      }}
+                    />
                   </Td>
                 </Tr>
               ))}
@@ -244,11 +263,40 @@ const ListaMoneda = () => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onDeleteAlertClose}>
-                Cancelar
-              </Button>
-              <Button colorScheme="red" onClick={handleEliminarConfirm} ml={3}>
+              <Button 
+                onClick={handleEliminarConfirm} 
+                mr={3}
+                bg="red.500"
+                boxShadow="xl"
+                _hover={{
+                  bg: "red.500",
+                  transform: 'scale(1.05)',
+                  transition: 'all 0.2s ease-in-out',
+                  boxShadow: '2xl'
+                }}
+                _active={{
+                  bg: "red.600",
+                  transform: 'scale(0.95)'
+                }}
+              >
                 Eliminar
+              </Button>
+              <Button 
+                bg="green.500"
+                boxShadow="xl"
+                _hover={{
+                  bg: "green.500",
+                  transform: 'scale(1.05)',
+                  transition: 'all 0.2s ease-in-out',
+                  boxShadow: '2xl'
+                }}
+                _active={{
+                  bg: "green.600",
+                  transform: 'scale(0.95)'
+                }}
+                ref={cancelRef} onClick={onDeleteAlertClose}
+              >
+                Cancelar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

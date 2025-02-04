@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, FormControl, FormLabel, Input, VStack, Heading, useToast } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, VStack, Heading, useToast, useColorModeValue, } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
 import { login } from '../services/api';
 import jwt_decode from 'jwt-decode';
@@ -46,9 +46,11 @@ const Login = () => {
     }
   };
 
+  const bgColor = useColorModeValue('gray.50', 'gray.800');
+
   return (
-    <Box maxW="md" mx="auto">
-      <VStack spacing={4}>
+    <Box maxW="md" mx="auto" bg={bgColor} py={8}>
+      <VStack spacing={6} bg={"gray.700"} p={8} borderRadius={5}>
         <Heading>Iniciar Sesión</Heading>
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <VStack spacing={4}>
@@ -72,7 +74,21 @@ const Login = () => {
                 }
               />
             </FormControl>
-            <Button type="submit" colorScheme="blue" width="full">
+            <Button 
+              type="submit" 
+              width="full"
+              bg={"orange.400"}
+              _hover={{
+                bg: "orange.500",
+                transform: 'scale(1.05)',
+                transition: 'all 0.2s ease-in-out',
+                boxShadow: '2xl'
+              }}
+              _active={{
+                bg: "orange.600",
+                transform: 'scale(0.95)'
+              }}
+            >
               Iniciar Sesión
             </Button>
           </VStack>

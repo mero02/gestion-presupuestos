@@ -151,3 +151,44 @@ export const eliminarMoneda = async (idMoneda) => {
   const response = await api.delete(`/monedas/${idMoneda}`);
   return response.data;
 };
+
+// Servicios para presupuestos
+export const crearPresupuesto = async (id_usuario, id_categoria, id_moneda, monto_objetivo, periodo, fecha_inicio, fecha_fin) => {
+  const body = {
+    id_usuario,
+    id_categoria,
+    id_moneda,
+    monto_objetivo,
+    periodo,
+    fecha_inicio,
+    fecha_fin,
+  };
+  return api.post('/presupuestos', body, {
+    headers: { 'Content-Type': 'application/json' },
+  });
+};
+
+export const listarPresupuestos = async (idUsuario) => {
+  const response = await api.get(`/presupuestos/${idUsuario}`);
+  return response.data;
+};
+
+export const obtenerPresupuesto = async (idPresupuesto) => {
+  const response = await api.get(`/presupuestos/detalle/${idPresupuesto}`);
+  return response.data;
+};
+
+export const actualizarPresupuesto = async (idPresupuesto, presupuestoData) => {
+  const response = await api.put(`/presupuestos/${idPresupuesto}`, presupuestoData);
+  return response.data;
+};
+
+export const eliminarPresupuesto = async (idPresupuesto) => {
+  const response = await api.delete(`/presupuestos/${idPresupuesto}`);
+  return response.data;
+};
+
+export const actualizarMontoPresupuesto = async (idPresupuesto) => {
+  const response = await api.put(`/presupuestos/${idPresupuesto}/actualizar-monto`);
+  return response.data;
+};

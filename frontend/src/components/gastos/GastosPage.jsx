@@ -22,6 +22,7 @@ import { FaPlus } from 'react-icons/fa';
 import FormularioGasto from './FormularioGasto';
 import ListaGastos from './ListaGastos';
 import { useAuth } from '../../context/AuthContext';
+import GoBackButton from '../GoBackButton';
 
 const GastosPage = () => {
   const [actualizarLista, setActualizarLista] = useState(false);
@@ -53,6 +54,7 @@ const GastosPage = () => {
             borderColor={borderColor}
           >
             <HStack justify="space-between" align="center">
+              <GoBackButton />
               <VStack align="start" spacing={1}>
                 <Heading size="lg">Gestión de Gastos</Heading>
                 <Text color="gray.500" fontSize="sm">
@@ -62,14 +64,22 @@ const GastosPage = () => {
               <IconButton
                 icon={<FaPlus />}
                 title='Agregar Gasto'
-                colorScheme="blue"
+                bg="orange.400"
+                color="gray.900"
                 size="lg"
                 aria-label="Agregar Gasto"
                 onClick={onOpen}
                 borderRadius="full"
+                boxShadow="xl"
                 _hover={{
+                  bg: "orange.500",
                   transform: 'scale(1.05)',
-                  transition: 'all 0.2s ease-in-out'
+                  transition: 'all 0.2s ease-in-out',
+                  boxShadow: '2xl'
+                }}
+                _active={{
+                  bg: "orange.600",
+                  transform: 'scale(0.95)'
                 }}
               />
             </HStack>
@@ -104,11 +114,17 @@ const GastosPage = () => {
               >
                 <Button 
                   onClick={onClose} 
-                  colorScheme="red" 
-                  variant="outline"
-                  mr={3}
+                  bg="green.500"
+                  boxShadow="xl"
                   _hover={{
-                    bg: 'red.50'
+                    bg: "green.500",
+                    transform: 'scale(1.05)',
+                    transition: 'all 0.2s ease-in-out',
+                    boxShadow: '2xl'
+                  }}
+                  _active={{
+                    bg: "green.600",
+                    transform: 'scale(0.95)'
                   }}
                 >
                   Cancelar

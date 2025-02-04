@@ -197,10 +197,7 @@ def crear_presupuesto(
     db: Session = Depends(get_db),
     current_user: schemas.Usuario = Depends(get_current_user)
 ):
-    """
-    Crea un nuevo presupuesto para el usuario actual.
-    """
-    return services.crear_presupuesto(db, presupuesto, current_user.id)
+    return services.crear_presupuesto(db, presupuesto)
 
 @router.get("/presupuestos/{id_usuario}", response_model=List[schemas.PresupuestoResponse])
 def listar_presupuestos(
@@ -210,12 +207,7 @@ def listar_presupuestos(
     db: Session = Depends(get_db),
     current_user: schemas.Usuario = Depends(get_current_user)
 ):
-    """
-    Obtiene todos los presupuestos de un usuario.
-    """
-    if id_usuario != current_user.id:
-        raise HTTPException(status_code=403, detail="No tienes permiso para ver estos presupuestos")
-    presupuestos = services.obtener_presupuestos_por_usuario(db, id_usuario, skip, limit)
+    presupuestos = services.obtener_presupuestos_usuario(db, id_usuario, skip, limit)
     if not presupuestos:
         raise HTTPException(status_code=404, detail="No se encontraron presupuestos para este usuario")
     return presupuestos
@@ -255,10 +247,7 @@ def eliminar_presupuesto(
     db: Session = Depends(get_db),
     current_user: schemas.Usuario = Depends(get_current_user)
 ):
-    """
-    Elimina un presupuesto existente.
-    """
-    presupuesto_eliminado = services.eliminar_presupuesto(db, id_presupuesto, current_user.id)
+    presupuesto_eliminado = services.eliminar_presupuesto(db, id_presupuesto)
     if not presupuesto_eliminado:
         raise HTTPException(status_code=404, detail="Presupuesto no encontrado")
     return presupuesto_eliminado

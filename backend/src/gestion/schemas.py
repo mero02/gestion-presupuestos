@@ -133,6 +133,7 @@ class Moneda(MonedaBase):
 # schemas para presupuesto
 class PresupuestoCreate(BaseModel):
     id_categoria: int = Field(..., description="ID de la categoría asociada al presupuesto")
+    id_usuario: int = Field(..., description="ID del usuario asociado al presupuesto")
     id_moneda: int = Field(..., description="ID de la moneda asociada al presupuesto")
     monto_objetivo: float = Field(..., description="Monto objetivo del presupuesto")
     periodo: str = Field(..., description="Período del presupuesto (ej: mensual, trimestral, anual)")

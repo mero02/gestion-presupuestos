@@ -209,17 +209,23 @@ const FormularioIngreso = ({ idUsuario, onIngresoRegistrado, ingresoEditando }) 
 
         <Button
           type="submit"
-          colorScheme="blue"
           width="full"
           size="lg"
           isLoading={isSubmitting}
           loadingText={ingresoEditando ? "Actualizando..." : "Registrando..."}
           isDisabled={!isValidMonto || !isValidFuente || !isValidMoneda}
+          bg={"orange.400"}
+          boxShadow="xl"
           _hover={{
-            transform: 'translateY(-2px)',
-            boxShadow: 'lg',
+            bg: "orange.500",
+            transform: 'scale(1.05)',
+            transition: 'all 0.2s ease-in-out',
+            boxShadow: '2xl'
           }}
-          transition="all 0.2s"
+          _active={{
+            bg: "orange.600",
+            transform: 'scale(0.95)'
+          }}
         >
           {ingresoEditando ? 'Actualizar Ingreso' : 'Registrar Ingreso'}
         </Button>

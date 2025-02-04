@@ -11,23 +11,18 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
-  Button,
   VStack,
   HStack,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { FaPlus } from 'react-icons/fa';
-import FormularioIngreso from './FormularioIngreso';
-import ListaIngresos from './ListaIngresos';
-import { useAuth } from '../../context/AuthContext';
+import FormularioPresupuesto from './FormularioPresupuesto';
+import ListaPresupuestos from './ListaPresupuestos';
 import GoBackButton from '../GoBackButton';
 
-const IngresosPage = () => {
+const PresupuestosPage = () => {
   const [actualizarLista, setActualizarLista] = useState(false);
-  const { userId } = useAuth();
-  const idUsuario = userId;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Color modes for better theme support
@@ -35,9 +30,9 @@ const IngresosPage = () => {
   const headerBg = useColorModeValue('white', 'gray.700');
   const borderColor = useColorModeValue('gray.200', 'gray.600');
 
-  const handleIngresoRegistrado = () => {
-    setActualizarLista((prev) => !prev);
-    onClose();
+  const handlePresupuestoRegistrado = () => {
+    setActualizarLista((prev) => !prev); // Actualiza la lista de presupuestos
+    onClose(); // Cierra el modal
   };
 
   return (
@@ -54,20 +49,20 @@ const IngresosPage = () => {
             borderColor={borderColor}
           >
             <HStack justify="space-between" align="center">
-              <GoBackButton />
+              <GoBackButton/>
               <VStack align="start" spacing={1}>
-                <Heading size="lg">Gestión de Ingresos</Heading>
+                <Heading size="lg">Gestión de Presupuestos</Heading>
                 <Text color="gray.500" fontSize="sm">
-                  Administra tus ingresos de manera eficiente
+                  Administra tus presupuestos
                 </Text>
               </VStack>
               <IconButton
                 icon={<FaPlus />}
-                title='Agregar Ingreso'
+                title='Agregar Presupuesto'
                 bg="orange.400"
                 color="gray.900"
                 size="lg"
-                aria-label="Agregar Ingreso"
+                aria-label="Agregar Presupuesto"
                 onClick={onOpen}
                 borderRadius="full"
                 boxShadow="xl"
@@ -85,7 +80,7 @@ const IngresosPage = () => {
             </HStack>
           </Box>
 
-          {/* Modal */}
+          {/* Modal para agregar presupuesto */}
           <Modal 
             isOpen={isOpen} 
             onClose={onClose}
@@ -99,41 +94,18 @@ const IngresosPage = () => {
                 borderColor={borderColor}
                 py={4}
               >
-                Registrar Nuevo Ingreso
+                Registrar Nuevo Presupuesto
               </ModalHeader>
               <ModalCloseButton />
               <ModalBody py={6}>
-                <FormularioIngreso 
-                  idUsuario={idUsuario} 
-                  onIngresoRegistrado={handleIngresoRegistrado} 
+                <FormularioPresupuesto 
+                  onPresupuestoRegistrado={handlePresupuestoRegistrado} 
                 />
               </ModalBody>
-              <ModalFooter 
-                borderTopWidth="1px" 
-                borderColor={borderColor}
-              >
-                <Button 
-                  onClick={onClose} 
-                  bg="green.500"
-                  boxShadow="xl"
-                  _hover={{
-                    bg: "green.500",
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.2s ease-in-out',
-                    boxShadow: '2xl'
-                  }}
-                  _active={{
-                    bg: "green.600",
-                    transform: 'scale(0.95)'
-                  }}
-                >
-                  Cancelar
-                </Button>
-              </ModalFooter>
             </ModalContent>
           </Modal>
 
-          {/* Lista de ingresos */}
+          {/* Lista de presupuestos */}
           <Box
             bg={headerBg}
             borderRadius="lg"
@@ -142,7 +114,7 @@ const IngresosPage = () => {
             borderColor={borderColor}
             overflow="hidden"
           >
-            <ListaIngresos idUsuario={idUsuario} key={actualizarLista} />
+            <ListaPresupuestos key={actualizarLista} />
           </Box>
         </VStack>
       </Container>
@@ -150,4 +122,4 @@ const IngresosPage = () => {
   );
 };
 
-export default IngresosPage;
+export default PresupuestosPage;
