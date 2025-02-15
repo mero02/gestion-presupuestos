@@ -10,8 +10,12 @@ import {
   Heading,
   useToast,
   useColorModeValue,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from '@chakra-ui/react';
 import { register } from '../services/api';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +23,7 @@ const Register = () => {
     email: '',
     password: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -66,10 +71,27 @@ const Register = () => {
             </FormControl>
             <FormControl isRequired>
               <FormLabel>Contraseña</FormLabel>
-              <Input
-                type="password"
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              />
+              <InputGroup>
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  borderColor="#00CED1"
+                  color="white"
+                  minLength={8}
+                  _hover={{ borderColor: "#4169E1" }}
+                  _focus={{ borderColor: "#4169E1", boxShadow: "0 0 0 1px #4169E1" }}
+                />
+                <InputRightElement>
+                  <IconButton
+                    icon={showPassword ? <FaEyeSlash /> : <FaEye />}
+                    onClick={() => setShowPassword(!showPassword)}
+                    variant="ghost"
+                    color="#00CED1"
+                    _hover={{ bg: 'transparent', color: "#4169E1" }}
+                    aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                  />
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
             <Button 
               type="submit" 
